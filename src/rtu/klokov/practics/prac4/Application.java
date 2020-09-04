@@ -2,10 +2,6 @@ package rtu.klokov.practics.prac4;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowListener;
 
 public class Application extends JFrame {
 
