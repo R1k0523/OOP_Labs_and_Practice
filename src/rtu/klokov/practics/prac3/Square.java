@@ -3,14 +3,16 @@ package rtu.klokov.practics.prac3;
 public class Square extends  Rectangle{
 
     public Square() {
+        super();
     }
 
-    public Square(double length, double width) {
-        super(length, width);
+    public Square(double side) {
+        super(side, side);
+
     }
 
-    public Square(String color, boolean isFilled, double length, double width) {
-        super(color, isFilled, length, width);
+    public Square(String color, boolean filled, double length, double width) {
+        super(color, filled, length, width);
     }
 
     @Override

@@ -5,7 +5,7 @@ public class Rectangle extends Shape {
     protected double length, width;
 
     public Rectangle() {
-        length = 10;
+        length = 5;
         width = 5;
     }
 
@@ -47,7 +47,6 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    public String toString() {
-        return "Прямоугольник" + "\nДлина:" + length + "\nШирина:" + width + "\nЦвет" +  color + (isFilled ? "\nЗакрашенный" : "\nНе закрашенный") + "\nПлощадь: " + getArea() + "\nПериметр: " + getPerimeter();
+    public String toString() {return "Прямоугольник" + "\nДлина:" + length + "\nШирина:" + width + "\nЦвет: " +  color + (filled ? "\nЗакрашенный" : "\nНе закрашенный") + "\nПлощадь: " + getArea() + "\nПериметр: " + getPerimeter();
     }
 }

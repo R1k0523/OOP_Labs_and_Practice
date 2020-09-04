@@ -13,8 +13,8 @@ public class Circle extends Shape{
         this.radius = radius;
     }
 
-    public Circle(String color, boolean isFilled, double radius) {
-        super(color, isFilled);
+    public Circle(String color, boolean filled, double radius) {
+        super(color, filled);
         this.radius = radius;
     }
 
@@ -38,6 +38,6 @@ public class Circle extends Shape{
 
     @Override
     public String toString() {
-        return "Круг" + "\nРадиус:" + radius + "\nЦвет" +  color + (isFilled ? "\nЗакрашенный" : "\nНе закрашенный") + "\nПлощадь: " + getArea() + "\nПериметр: " + getPerimeter();
+        return "Круг" + "\nРадиус:" + radius + "\nЦвет: " +  color + (filled ? "\nЗакрашенный" : "\nНе закрашенный") + "\nПлощадь: " + getArea() + "\nПериметр: " + getPerimeter();
     }
 }

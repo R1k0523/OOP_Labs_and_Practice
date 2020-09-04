@@ -3,14 +3,14 @@ package rtu.klokov.practics.prac3;
 public abstract class Shape {
 
     protected String color;
-    protected boolean isFilled;
+    protected boolean filled;
 
     public Shape() {
     }
 
     public Shape(String color, boolean isFilled) {
         this.color = color;
-        this.isFilled = isFilled;
+        this.filled = isFilled;
     }
 
     public String getColor() {
@@ -22,11 +22,11 @@ public abstract class Shape {
     }
 
     public boolean isFilled() {
-        return isFilled;
+        return filled;
     }
 
     public void setFilled(boolean filled) {
-        isFilled = filled;
+        this.filled = filled;
     }
 
     public abstract double getArea();
