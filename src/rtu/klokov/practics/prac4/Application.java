@@ -27,7 +27,7 @@ public class Application extends JFrame {
 
         init();
 
-        this.setBounds(200,200,WINDOW_WIDTH,WINDOW_HEIGHT);
+        setBounds(200,200,WINDOW_WIDTH,WINDOW_HEIGHT);
         setLayout(new BorderLayout());
     }
 
