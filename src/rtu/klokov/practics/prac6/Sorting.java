@@ -2,18 +2,18 @@ package rtu.klokov.practics.prac6;
 
 public class Sorting {
 
-    public static void insertionSort(Student[] students) {
-        for (int left = 0; left < students.length; left++) {
-            Student value = students[left];
+    public static void insertionSort(Comparable[] comparables) {
+        for (int left = 0; left < comparables.length; left++) {
+            Comparable value = comparables[left];
             int i = left - 1;
             for (; i >= 0; i--) {
-                if (value.getIdNumber() < students[i].getIdNumber()) {
-                    students[i + 1] = students[i];
+                if (value.compareTo(comparables[i]) < 0) { //если ID самого левого студента меньше
+                    comparables[i + 1] = comparables[i];
                 } else {
                     break;
                 }
             }
-            students[i + 1] = value;
+            comparables[i + 1] = value;
         }
     }
 }

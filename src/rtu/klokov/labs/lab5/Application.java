@@ -18,7 +18,6 @@ private final int WINDOW_WIDTH = 500, WINDOW_HEIGHT = 500;
 
     }
 
-    @Override
     public void paint(Graphics g) {
         Graphics2D graphics2D = (Graphics2D) g;
         graphics2D.setColor(Color.white);

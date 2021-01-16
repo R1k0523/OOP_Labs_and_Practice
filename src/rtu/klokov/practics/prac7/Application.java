@@ -2,8 +2,6 @@ package rtu.klokov.practics.prac7;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.*;
@@ -18,21 +16,24 @@ public class Application extends  JFrame {
     private final Vector<ImageIcon> imageIcons = new Vector<>();
     private final Vector<JLabel> imageLabels = new Vector<>();
     private final Vector<JLabel> emptyImageLabels = new Vector<>();
-    private static final DragMouseAdapter listener = new DragMouseAdapter();
+
     private static final JLabel labelHand = new JLabel(new ImageIcon(path + "hand.png"));
+    private final JLabel labelFirst = new JLabel("1st player");
+    private final JLabel labelSecond = new JLabel("2nd player");
 
-    private final JLabel labelFirst = new JLabel("First player");
+    private static final DragMouseAdapter listener = new DragMouseAdapter();
 
-    private final JLabel labelSecond = new JLabel("Second player");
     Application() {
         super("Drunk Man");
-        this.getContentPane().setBackground( Color.getHSBColor(242, 203, 7) );
+        getContentPane().setBackground( Color.getHSBColor(242, 203, 7) );
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
         init();
     }
 
     private void addResources() {
         for (int i = 0; i < 10; i++) {
-            imageIcons.add(new ImageIcon("src/rtu/klokov/practics/prac7/resources/" + i + ".png"));
+            imageIcons.add(new ImageIcon(path + i + ".png"));
         }
     }
     private void addLabels() {
@@ -42,19 +43,20 @@ public class Application extends  JFrame {
         labelFirst.setFont (labelFirst.getFont ().deriveFont (30.0f));
         labelSecond.setFont(labelFirst.getFont());
         for (int i = 0; i < 10; i++) {
-            var label = new JLabel(imageIcons.get(i), JLabel.CENTER);
-            var label1 = new JLabel(new ImageIcon(picEmpty));
+            JLabel empty_label = new JLabel(imageIcons.get(i), JLabel.CENTER);
+            JLabel card_label = new JLabel(new ImageIcon(picEmpty));
 
-            label.addMouseListener(listener);
-            label1.addMouseListener(listener);
+            empty_label.addMouseListener(listener);
+            card_label.addMouseListener(listener);
 
-            label.setMinimumSize(new Dimension(100, 150));
-            label1.setMinimumSize(new Dimension(100, 150));
-            label.setMaximumSize(new Dimension(100, 150));
-            label1.setMaximumSize(new Dimension(100, 150));
+            empty_label.setMinimumSize(new Dimension(100, 150));
+            card_label.setMinimumSize(new Dimension(100, 150));
+            empty_label.setMaximumSize(new Dimension(100, 150));
+            card_label.setMaximumSize(new Dimension(100, 150));
 
-            emptyImageLabels.add(label);
-            imageLabels.add(label1);
+            emptyImageLabels.add(empty_label);
+            imageLabels.add(card_label);
+
         }
     }
     private void init() {
@@ -65,6 +67,7 @@ public class Application extends  JFrame {
         buttonCalculate.setTransferHandler(new TransferHandler("icon"));
         buttonCalculate.setMinimumSize(new Dimension(90, 90));
         buttonCalculate.setText("Let's play");
+        buttonCalculate.setBackground(Color.orange);
         buttonCalculate.addActionListener(e -> {
             if (isAllUsed()) {
                 simulateGame();
@@ -72,21 +75,17 @@ public class Application extends  JFrame {
                 showWarning();
             }
         });
-
         ArrayList<JComponent> components = new ArrayList<>();
-        components.add(labelFirst); // 0
-        components.add(labelSecond); // 1
-        components.addAll(imageLabels); // 2 - 11
-        components.addAll(emptyImageLabels); // 12 - 21
-        components.add(labelHand); // 22
-        components.add(buttonCalculate); // 23
+        components.add(labelFirst);
+        components.add(labelSecond);
+        components.addAll(imageLabels);
+        components.addAll(emptyImageLabels);
+        components.add(labelHand);
+        components.add(buttonCalculate);
         JComponent[] componentsArray = new JComponent[24];
         components.toArray(componentsArray);
         createLayout(componentsArray);
 
-        setTitle("Drunk Man");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
     }
 
     private void showWarning() {
@@ -103,7 +102,6 @@ public class Application extends  JFrame {
           first.add(getCard(i));
           second.add(getCard(i+5));
         }
-        System.out.println(first.toString());
         String result = GameCalculator.calculate(first, second);
         JOptionPane.showMessageDialog(
                 null, result,"Game calculated" ,
@@ -127,7 +125,7 @@ public class Application extends  JFrame {
     private static class DragMouseAdapter extends MouseAdapter {
 
 
-        public void mouseClicked(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
             var c = (JLabel) e.getSource();
             if (!c.getIcon().toString().equals(picEmpty)) { //Если данная ячейка занята
                     if (dragged) {
@@ -155,8 +153,8 @@ public class Application extends  JFrame {
 
     private void createLayout(JComponent... components) {
 
-        var pane = getContentPane();
-        var gl = new GroupLayout(pane);
+        Container pane = getContentPane();
+        GroupLayout gl = new GroupLayout(pane);
         GroupLayout.Group[] groups = new GroupLayout.Group[4];
 
         pane.setLayout(gl);
@@ -168,8 +166,8 @@ public class Application extends  JFrame {
         groups[2] = gl.createSequentialGroup();
         groups[3] = gl.createSequentialGroup();
 
-        addGroups(groups, components);
-
+        createGroups(groups, components);
+        //использование цикла здесь создает ошибку java.lang.IllegalStateException
         gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
                 .addGroup(groups[0])
                 .addGroup(groups[1])
@@ -182,7 +180,7 @@ public class Application extends  JFrame {
         groups[2] = gl.createParallelGroup();
         groups[3] = gl.createParallelGroup();
 
-        addGroups(groups, components);
+        createGroups(groups, components);
 
         gl.setVerticalGroup(gl.createSequentialGroup()
                 .addGroup(groups[0])
@@ -197,10 +195,10 @@ public class Application extends  JFrame {
         pack();
     }
 
-    private void addGroups(GroupLayout.Group[] groups, JComponent[] components) {
-        groups[0].addComponent(components[0]);
+    private void createGroups(GroupLayout.Group[] groups, JComponent[] components) {
+        groups[0].addComponent(components[0]).addGap(15);
         groups[1].addComponent(components[1]);
-        groups[2].addComponent(components[22]);
+        groups[2].addComponent(components[22]).addGap(25);
         groups[3].addComponent(components[23]);
         for (int i = 2; i < 7; i++) {
             groups[0].addComponent(components[i])

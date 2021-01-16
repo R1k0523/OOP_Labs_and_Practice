@@ -1,8 +1,7 @@
 package rtu.klokov.practics.prac6;
 
-import java.util.Random;
 
-public class Student {
+public class Student implements Comparable<Student>{
     private String name, surname;
     private int idNumber;
 
@@ -13,7 +12,7 @@ public class Student {
     }
 
     public Student() {
-        name = "Default_Name_";
+        name = "Default_Name";
         surname = "Default_Surname";
         idNumber = 0;
     }
@@ -42,11 +41,15 @@ public class Student {
         this.idNumber = idNumber;
     }
 
-
-    @Override
     public String toString() {
         return  "Name: " + name +
                 ", Surname = " + surname  +
                 ", ID = " + idNumber + "\n";
+    }
+
+    public int compareTo(Student o) {
+        if (getIdNumber() == o.getIdNumber())
+            return 0;
+        return (getIdNumber() > o.getIdNumber() ? 1 : -1);
     }
 }

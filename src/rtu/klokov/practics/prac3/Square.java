@@ -15,12 +15,10 @@ public class Square extends  Rectangle{
         super(color, filled, length, width);
     }
 
-    @Override
     public double getWidth() {
         return super.getWidth();
     }
 
-    @Override
     public void setWidth(double side) {
         super.setWidth(side);
         setLength(side);

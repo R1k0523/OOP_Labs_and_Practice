@@ -2,6 +2,7 @@ package rtu.klokov.labs.lab10;
 
 import rtu.klokov.labs.lab6.Application;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TestArrayToArrayList {
@@ -27,8 +28,17 @@ public class TestArrayToArrayList {
             System.out.println(arrayList2.get(i));
         }
 
+        ObjectArray array1 = new ObjectArray(10);
+
+        array1.set(4, 10);
+        array1.set(4, "test");
+        array1.set(4, new Exception());
+        array1.set(4, new ArrayList<>());
+
+
     }
     public static <E> void ArrayToArrayList(E[] arr, ArrayList<E> list) {
         for (E e : arr) list.add(e);
     }
+
 }

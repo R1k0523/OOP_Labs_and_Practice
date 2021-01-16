@@ -3,6 +3,7 @@ package rtu.klokov.labs.lab9;
 import java.util.Scanner;
 
 public class ThrowsDemo {
+
     public void getKey() {
         Scanner myScanner = new Scanner(System.in);
         System.out.print("Enter Key ");
@@ -13,6 +14,7 @@ public class ThrowsDemo {
                 printDetails(key);
             } catch (Exception e) {
                 tries++;
+                System.out.println("Try № " + tries + " failed");
             }
         }
     }

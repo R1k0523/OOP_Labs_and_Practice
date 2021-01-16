@@ -33,6 +33,17 @@ public class Cup extends Dish {
     }
 
     @Override
+    public String toString() {
+
+        return "Свойства ЧАШКИ\n" +
+                " Цвет: " + getColor() + ' ' +
+                "\n Материал: " + getMaterial() + ' ' +
+                "\n Размер: " + getSize() +
+                "\n Посуда " + (isClean() ? "чистая" : "грязная") +
+                "\n Вместимость: " + capacity;
+    }
+
+    @Override
     public int getPrice() {
         return price;
     }

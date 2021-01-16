@@ -62,11 +62,7 @@ public abstract class Dish implements Priceable{
         isClean = true;
     }
 
-    public String toString() {
-        return "Свойства посуды\n" +
-                " Цвет: " + color + ' ' +
-                "\n Материал: " + material + ' ' +
-                "\n Размер: " + size +
-                "\n Посуда " + (isClean ? "чистая" : "грязная");
-    }
+    public abstract String toString();
+
+
 }

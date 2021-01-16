@@ -8,17 +8,17 @@ public class TestArrayList {
     public static void main(String[] args) {
         ArrayList<Integer> arr = new ArrayList<>();
         Random random = new Random();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             arr.add(random.nextInt(400));
         }
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println(arr.get(i));
         }
         arr.add(400);
         System.out.println(arr.contains(400));
         arr.sort(Integer::compareTo);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println(arr.get(i));
         }
         Object[] arr2 = arr.toArray();

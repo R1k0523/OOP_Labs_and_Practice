@@ -50,9 +50,12 @@ public class Plate extends Dish {
         this.radius = radius;
     }
 
-    @Override
     public String toString() {
-        return super.toString()+
+        return "Свойства ТАРЕЛКИ\n" +
+                " Цвет: " + getColor() + ' ' +
+                "\n Материал: " + getMaterial() + ' ' +
+                "\n Размер: " + getSize() +
+                "\n Посуда " + (isClean() ? "чистая" : "грязная") +
                 "\n Узор " + (hasPattern ? "присутствует" : "отсутствует") +
                 "\n Глубина " + depth +
                 "\n Радиус " + radius;
